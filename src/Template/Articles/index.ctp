@@ -4,6 +4,7 @@
         <th>Id</th>
         <th>Title</th>
         <th>Created</th>
+        <th>Modified</th>
         <th>Action</th>
     </tr>
 
@@ -17,6 +18,9 @@
         </td>
         <td>
             <?= $article->created->format(DATE_RFC850) ?>
+        </td>
+        <td>
+            <?= $article->modified->format(DATE_RFC850) ?>
         </td>
         <td>
             <?= $this->Html->link('Edit', ['action' => 'edit', $article->id]) ?>
