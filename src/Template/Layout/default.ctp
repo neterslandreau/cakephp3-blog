@@ -36,8 +36,14 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 <body>
     <nav class="top-bar expanded" data-topbar role="navigation">
         <ul class="title-area large-3 medium-4 columns">
-            <li class="name">
-                <h1><a href=""><?= $this->fetch('title') ?></a></h1>
+            <li class="name" style="float: left;">
+                <?= $this->Html->link('Home', ['controller' => 'pages', 'action' => 'display', 'home']).'&nbsp;' ?>
+            </li>
+            <li class="name" style="float: left;">
+                <?= $this->Html->link('Articles', ['controller' => 'articles', 'action' => 'index']).'&nbsp;' ?>
+            </li>
+            <li class="name" style="float: left;">
+                <?= $this->Html->link('Categories', ['controller' => 'categories', 'action' => 'index']).'&nbsp;' ?>
             </li>
         </ul>
         <div class="top-bar-section">

@@ -37,6 +37,15 @@ class ArticlesTable extends Table
         $this->primaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Sluggable');
+
+        $this->belongsTo('Categories', [
+            'foreignKey' => 'category_id',
+        ]);
+        $this->belongsTo('Users', [
+            'foreignKey' => 'user_id',
+        ]);
+
     }
 
     /**
@@ -54,5 +63,9 @@ class ArticlesTable extends Table
             ->requirePresence('body');
 
         return $validator;
+    }
+    public function isOwnedBy($articleId, $userId)
+    {
+        return $this->exists(['id' => $articleId, 'user_id' => $userId]);
     }
 }

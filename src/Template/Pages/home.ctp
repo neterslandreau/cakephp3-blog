@@ -26,4 +26,14 @@ if (!Configure::read('debug')):
 endif;
 
 $cakeDescription = 'CakePHP: the rapid development PHP framework';
-?>
+
+
+echo 'Welcome Home!<br />';
+if (!$this->request->session()->check('Auth.User')) {
+    echo $this->Html->link('Login', '/users/login').'<br />';
+    echo $this->Html->link('Register', '/users/add').'<br />';
+} else {
+    echo $this->html->link('Logout', '/users/logout').'<br />';
+}
+echo $this->html->link('Articles', ['controller' => 'articles', 'action' => 'index']).'<br />';
+

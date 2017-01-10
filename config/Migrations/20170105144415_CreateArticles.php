@@ -12,23 +12,29 @@ class CreateArticles extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('articles');
+        $table = $this->table('articles', ['id' => false, 'primary_key' => ['id']]);
+        $table->addColumn('id', 'uuid', [
+                'null' => false,
+            ]);
+        $table->addColumn('user_id', 'uuid', [
+            'null' => false
+        ]);
+        $table->addColumn('category_id', 'uuid', [
+            'null' => false
+        ]);
         $table->addColumn('title', 'string', [
-            'default' => null,
-            'limit' => 255,
+            'length' => 50,
             'null' => false,
+            'default' => null
         ]);
-        $table->addColumn('body', 'text', [
-            'default' => null,
-            'null' => false,
-        ]);
+        $table->addColumn('body', 'text');
         $table->addColumn('created', 'datetime', [
             'default' => null,
-            'null' => false,
+            'null' => false
         ]);
         $table->addColumn('modified', 'datetime', [
             'default' => null,
-            'null' => false,
+            'null' => false
         ]);
         $table->create();
     }

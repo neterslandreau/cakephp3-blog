@@ -9,11 +9,12 @@
     <fieldset>
         <legend><?= __('Add Article') ?></legend>
         <?php
+            echo $this->Form->input('user_id');
             echo $this->Form->input('category_id');
             echo $this->Form->input('title');
-            echo $this->Form->input('body', ['rows' => '3']);
+            echo $this->Form->input('body');
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Save Article')) ?>
+    <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
 </div>

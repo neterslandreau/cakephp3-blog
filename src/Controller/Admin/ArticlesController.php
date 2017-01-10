@@ -1,5 +1,5 @@
 <?php
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Controller\AppController;
 
@@ -10,32 +10,6 @@ use App\Controller\AppController;
  */
 class ArticlesController extends AppController
 {
-    public $components = [
-        'Comments.Comments' => [
-            'userModelClass' => 'Users.Users',
-        ]
-    ];
-
-    /**
-     * @param $user
-     * @return bool
-     */
-    public function isAuthorized($user)
-    {
-//        debug($user);
-        if ($this->request->action === 'add') {
-            return true;
-        }
-
-        if (in_array($this->request->action, ['add', 'edit', 'delete'])) {
-            $articleId = (int)$this->request->params['pass'][0];
-            if ($this->Articles->isOwnedBy($articleId, $user['id'])) {
-                return true;
-            }
-        }
-
-//        return parent::isAuthorized($user);
-    }
 
     /**
      * Index method
@@ -44,11 +18,8 @@ class ArticlesController extends AppController
      */
     public function index()
     {
-        $articles = $this->Articles->find()->contain([
-            'Users',
-            'Categories'
-        ]);
-        $this->paginate($articles);
+        debug($this->Auth->user());
+        $articles = $this->paginate($this->Articles);
 
         $this->set(compact('articles'));
         $this->set('_serialize', ['articles']);
@@ -64,15 +35,11 @@ class ArticlesController extends AppController
     public function view($id = null)
     {
         $article = $this->Articles->get($id, [
-            'contain' => [
-                'Users',
-                'Categories',
-            ]
+            'contain' => []
         ]);
 
-        $this->set('model', $this->modelClass);
         $this->set('article', $article);
-        $this->set('_serialize', ['article', 'model']);
+        $this->set('_serialize', ['article']);
     }
 
     /**
@@ -85,7 +52,6 @@ class ArticlesController extends AppController
         $article = $this->Articles->newEntity();
         if ($this->request->is('post')) {
             $article = $this->Articles->patchEntity($article, $this->request->data);
-            $article->user_id = $this->Auth->user('id');
             if ($this->Articles->save($article)) {
                 $this->Flash->success(__('The article has been saved.'));
 
@@ -94,9 +60,6 @@ class ArticlesController extends AppController
                 $this->Flash->error(__('The article could not be saved. Please, try again.'));
             }
         }
-        $categories = $this->Articles->Categories->find('treeList');
-//        debug($categories);
-        $this->set('categories', $categories);
         $this->set(compact('article'));
         $this->set('_serialize', ['article']);
     }

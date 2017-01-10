@@ -225,4 +225,6 @@ if (Configure::read('debug')) {
 
 Plugin::load('Migrations');
 
-Plugin::load('CakeDC/Users');
+Plugin::load('Comments', ['bootstrap' => true, 'routes' => true]);
+//Plugin::load('CakeDC/Users', ['bootstrap' => true, 'routes' => true]);
+

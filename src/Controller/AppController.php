@@ -16,6 +16,7 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use Cake\View\CellTrait;
 
 /**
  * Application Controller
@@ -27,7 +28,7 @@ use Cake\Event\Event;
  */
 class AppController extends Controller
 {
-
+    use CellTrait;
     /**
      * Initialization hook method.
      *
@@ -39,17 +40,83 @@ class AppController extends Controller
      */
     public function initialize()
     {
-        parent::initialize();
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
+//        $this->loadComponent('CakeDC/Users.UsersAuth', [
+//            'loginRedirect' => [
+//                'plugin' => false,
+//                'controller' => 'Articles',
+//                'action' => 'index',
+//            ],
+//            'logoutRedirect' => [
+//                'plugin' => false,
+//                'controller' => 'Pages',
+//                'action' => 'display', 'home'
+//            ]
+//        ]);
+        $this->loadComponent('Auth', [
+            'authorize' => ['Controller'],
+            'authenticate' => [
+                'Form' => [
+                    'fields' => [
+                        'username' => 'email'
+                    ],
+                ],
+            ],
+            'loginRedirect' => [
+                'prefix' => false,
+                'plugin' => false,
+                'controller' => 'Articles',
+                'action' => 'index',
+            ],
+            'logoutRedirect' => [
+                'prefix' => false,
+                'plugin' => false,
+                'controller' => 'Pages',
+                'action' => 'index',
+                'home'
+            ],
+            'authError' => 'You are not allowd!',
+            'storage' => 'Session',
+            'loginAction' => [
+                'controller' => 'Users',
+                'action' => 'login',
+            ],
+        ]);
 
+        parent::initialize();
         /*
          * Enable the following components for recommended CakePHP security settings.
          * see http://book.cakephp.org/3.0/en/controllers/components/security.html
          */
         //$this->loadComponent('Security');
         //$this->loadComponent('Csrf');
+    }
+
+    /**
+     * Set authorization
+     *
+     * @param $user
+     * @return bool
+     */
+    public function isAuthorized($user)
+    {
+        if (isset($user['role']) && $user['role'] === 'admin') {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Before filter callback
+     *
+     * @param \Cake\Event\Event $event
+     */
+    public function beforeFilter(Event $event)
+    {
+        $this->Auth->allow(['index', 'view', 'display']);
     }
 
     /**

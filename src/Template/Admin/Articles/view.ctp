@@ -12,16 +12,20 @@
     <h3><?= h($article->title) ?></h3>
     <table class="vertical-table">
         <tr>
+            <th scope="row"><?= __('Id') ?></th>
+            <td><?= h($article->id) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('User Id') ?></th>
+            <td><?= h($article->user_id) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Category Id') ?></th>
+            <td><?= h($article->category_id) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Title') ?></th>
             <td><?= h($article->title) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Author') ?></th>
-            <td><?php echo h($article->user->username).' / '. h($article->user->email); ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Category') ?></th>
-            <td><?php echo h($article->category->name); ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Created') ?></th>
@@ -36,13 +40,4 @@
         <h4><?= __('Body') ?></h4>
         <?= $this->Text->autoParagraph(h($article->body)); ?>
     </div>
-    <?php
-        $redirectUrl = Cake\Routing\Router::url([
-            'controller' => $this->request->params['controller'],
-            'action' => $this->request->params['action'], $article->id
-        ]);
-        echo $this->cell('Comments.Comments::addComment', [$article->id, $model, $this->request->session()->read('Auth.User.id'), '', $redirectUrl])->render('AddComment');
-        echo $this->cell('Comments.Comments::listComments', [$article->id, $model, $this->request->session()->read('Auth.User.id'), $redirectUrl])->render('ListComments');
-    ?>
 </div>
-
