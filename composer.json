@@ -6,7 +6,7 @@
     "license": "MIT",
     "require": {
         "php": ">=5.5.9",
-        "cakephp/cakephp": "3.3.*",
+        "cakephp/cakephp": "3.2.*",
         "mobiledetect/mobiledetectlib": "2.*",
         "cakephp/migrations": "~1.0",
         "cakephp/plugin-installer": "*",
@@ -16,7 +16,8 @@
         "league/oauth2-facebook": "^1.4",
         "league/oauth2-instagram": "^0.2.2",
         "league/oauth2-google": "^1.0",
-        "league/oauth2-linkedin": "^0.4.2"
+        "league/oauth2-linkedin": "^0.4.2",
+        "cakedc/search": "3.0.*-dev"
     },
     "require-dev": {
         "psy/psysh": "@stable",

@@ -226,5 +226,8 @@ if (Configure::read('debug')) {
 Plugin::load('Migrations');
 
 Plugin::load('Comments', ['bootstrap' => true, 'routes' => true]);
-//Plugin::load('CakeDC/Users', ['bootstrap' => true, 'routes' => true]);
-
+Plugin::load('Search');
+Configure::write('Users.config', ['users']);
+//Configure::write('Users.auth', false);
+Plugin::load('CakeDC/Users', ['bootstrap' => true, 'routes' => true]);
+Configure::write('Auth.authenticate.Form.fields.username', 'email');

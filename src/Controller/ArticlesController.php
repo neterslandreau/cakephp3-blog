@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Articles Controller
@@ -10,12 +11,18 @@ use App\Controller\AppController;
  */
 class ArticlesController extends AppController
 {
-    public $components = [
-        'Comments.Comments' => [
-            'userModelClass' => 'Users.Users',
-        ]
-    ];
 
+    /**
+     * Loading thwe CommentsComponent associates the Commentable behavior with the Articles table
+     */
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadComponent('Comments.Comments', [
+            'userModelClass' => 'Users.Users',
+            'comment_view_type' => 'flat'
+        ]);
+    }
     /**
      * @param $user
      * @return bool
@@ -37,6 +44,21 @@ class ArticlesController extends AppController
 //        return parent::isAuthorized($user);
     }
 
+    public function beforeRender(Event $event)
+    {
+        parent::beforeRender($event);
+//        debug('ArticlesController::beforeRender()');
+    }
+
+    /**
+     * @param Event $event
+     *
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->Auth->allow('index', 'view', 'add', 'edit');
+//        $this->request->params;
+    }
     /**
      * Index method
      *
@@ -48,6 +70,12 @@ class ArticlesController extends AppController
             'Users',
             'Categories'
         ]);
+        $associations = ($this->Articles->associations());
+        foreach ($associations as $association) {
+//            debug($association->name());
+//            debug($association()->type());
+//            debug($association);
+        }
         $this->paginate($articles);
 
         $this->set(compact('articles'));
@@ -63,6 +91,7 @@ class ArticlesController extends AppController
      */
     public function view($id = null)
     {
+//        debug('hola');
         $article = $this->Articles->get($id, [
             'contain' => [
                 'Users',
@@ -138,6 +167,7 @@ class ArticlesController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $article = $this->Articles->get($id);
+
         if ($this->Articles->delete($article)) {
             $this->Flash->success(__('The article has been deleted.'));
         } else {

@@ -38,6 +38,10 @@ class ArticlesTable extends Table
 
         $this->addBehavior('Timestamp');
         $this->addBehavior('Sluggable');
+        $this->addBehavior('CounterCache', [
+            'Categories' => ['article_count']
+
+        ]);
 
         $this->belongsTo('Categories', [
             'foreignKey' => 'category_id',

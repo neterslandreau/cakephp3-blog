@@ -16,6 +16,10 @@ class CategoriesController extends AppController
     {
         $this->Auth->allow();
     }
+
+    /**
+     * @return \Cake\Network\Response|null
+     */
     public function index()
     {
         $categories = $this->Categories->find()
@@ -25,6 +29,10 @@ class CategoriesController extends AppController
         $this->set('_serialize', ['categories']);
     }
 
+    /**
+     * @param null $id
+     * @return \Cake\Network\Response|null
+     */
     public function moveUp($id = null)
     {
         $this->request->allowMethod(['post', 'put']);
@@ -37,6 +45,10 @@ class CategoriesController extends AppController
         return $this->redirect($this->referer(['action' => 'index']));
     }
 
+    /**
+     * @param null $id
+     * @return \Cake\Network\Response|null
+     */
     public function moveDown($id = null)
     {
         $this->request->allowMethod(['post', 'put']);
@@ -61,9 +73,11 @@ class CategoriesController extends AppController
         $category = $this->Categories->get($id, [
             'contain' => ['ParentCategories', 'Articles', 'ChildCategories']
         ]);
+        $model = $this->modelClass;
 
+        $this->set('model', $model);
         $this->set('category', $category);
-        $this->set('_serialize', ['category']);
+        $this->set('_serialize', ['category', 'model']);
     }
 
     /**

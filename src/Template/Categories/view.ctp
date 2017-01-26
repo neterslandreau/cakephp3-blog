@@ -47,6 +47,9 @@
             <td><?= h($category->modified) ?></td>
         </tr>
     </table>
+
+    <?= $this->element('commentCells'); ?>
+
     <div class="related">
         <h4><?= __('Related Articles') ?></h4>
         <?php if (!empty($category->articles)): ?>

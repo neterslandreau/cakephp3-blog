@@ -30,10 +30,11 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
 
 echo 'Welcome Home!<br />';
 if (!$this->request->session()->check('Auth.User')) {
-    echo $this->Html->link('Login', '/users/login').'<br />';
-    echo $this->Html->link('Register', '/users/add').'<br />';
+    echo $this->Html->link('Login', ['plugin' => false, 'prefix' => false, 'controller' => false, 'action' => 'login']).'<br />';
+//    echo $this->Html->link('Register', ['plugin' => 'Users', 'controller' => 'users', 'action' => 'register']).'<br />';
 } else {
-    echo $this->html->link('Logout', '/users/logout').'<br />';
+echo 'You are '. $this->request->session()->read('Auth.User.username').'!<br />';
+    echo $this->html->link('Logout', ['plugin' => false, 'prefix' => false, 'controller' => false, 'action' => 'logout']).'<br />';
 }
-echo $this->html->link('Articles', ['controller' => 'articles', 'action' => 'index']).'<br />';
-
+echo $this->html->link('Articles', ['plugin' => false, 'prefix' => false, 'controller' => 'articles', 'action' => 'index']).'<br />';
+echo $this->element('Comments.test');

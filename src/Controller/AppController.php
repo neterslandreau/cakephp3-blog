@@ -43,55 +43,45 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
-//        $this->loadComponent('CakeDC/Users.UsersAuth', [
+//        $this->loadComponent('Auth', [
+//            'authorize' => ['Controller'],
+//            'authenticate' => [
+//                'Form' => [
+//                    'fields' => [
+//                        'username' => 'email'
+//                    ],
+//                ],
+//            ],
 //            'loginRedirect' => [
+//                'prefix' => false,
 //                'plugin' => false,
 //                'controller' => 'Articles',
 //                'action' => 'index',
 //            ],
 //            'logoutRedirect' => [
+//                'prefix' => false,
 //                'plugin' => false,
 //                'controller' => 'Pages',
-//                'action' => 'display', 'home'
-//            ]
+//                'action' => 'index',
+//                'home'
+//            ],
+//            'authError' => 'You are not allowd!',
+//            'storage' => 'Session',
+//            'loginAction' => [
+//                'controller' => 'Users',
+//                'action' => 'login',
+//            ],
 //        ]);
-        $this->loadComponent('Auth', [
-            'authorize' => ['Controller'],
-            'authenticate' => [
-                'Form' => [
-                    'fields' => [
-                        'username' => 'email'
-                    ],
-                ],
-            ],
-            'loginRedirect' => [
-                'prefix' => false,
-                'plugin' => false,
-                'controller' => 'Articles',
-                'action' => 'index',
-            ],
-            'logoutRedirect' => [
-                'prefix' => false,
-                'plugin' => false,
-                'controller' => 'Pages',
-                'action' => 'index',
-                'home'
-            ],
-            'authError' => 'You are not allowd!',
-            'storage' => 'Session',
-            'loginAction' => [
-                'controller' => 'Users',
-                'action' => 'login',
-            ],
-        ]);
+        $this->loadComponent('CakeDC/Users.UsersAuth');
 
         parent::initialize();
         /*
          * Enable the following components for recommended CakePHP security settings.
          * see http://book.cakephp.org/3.0/en/controllers/components/security.html
          */
-        //$this->loadComponent('Security');
-        //$this->loadComponent('Csrf');
+//        $this->loadComponent('Security');
+//        $this->loadComponent('Csrf');
+        $this->loadComponent('Search.Prg');
     }
 
     /**
@@ -99,14 +89,15 @@ class AppController extends Controller
      *
      * @param $user
      * @return bool
-     */
+     *
     public function isAuthorized($user)
     {
+        debug('hola!');
         if (isset($user['role']) && $user['role'] === 'admin') {
             return true;
         }
 
-        return false;
+        return true;
     }
 
     /**

@@ -36,13 +36,12 @@
         <h4><?= __('Body') ?></h4>
         <?= $this->Text->autoParagraph(h($article->body)); ?>
     </div>
-    <?php
-        $redirectUrl = Cake\Routing\Router::url([
-            'controller' => $this->request->params['controller'],
-            'action' => $this->request->params['action'], $article->id
-        ]);
-        echo $this->cell('Comments.Comments::addComment', [$article->id, $model, $this->request->session()->read('Auth.User.id'), '', $redirectUrl])->render('AddComment');
-        echo $this->cell('Comments.Comments::listComments', [$article->id, $model, $this->request->session()->read('Auth.User.id'), $redirectUrl])->render('ListComments');
-    ?>
+    <?= $this->element('commentCells'); ?>
 </div>
+blah<br />
+blah<br />
+blah<br />
+blah<br />
+blah<br />
+blah<br />
 

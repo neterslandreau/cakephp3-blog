@@ -18,7 +18,7 @@ class ArticlesController extends AppController
      */
     public function index()
     {
-        debug($this->Auth->user());
+//        debug($this->Auth->user());
         $articles = $this->paginate($this->Articles);
 
         $this->set(compact('articles'));

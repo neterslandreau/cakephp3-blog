@@ -28,6 +28,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?>
+    <?= $this->html->script('http://code.jquery.com/jquery-latest.min.js'); ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -35,15 +36,28 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 </head>
 <body>
     <nav class="top-bar expanded" data-topbar role="navigation">
-        <ul class="title-area large-3 medium-4 columns">
-            <li class="name" style="float: left;">
-                <?= $this->Html->link('Home', ['controller' => 'pages', 'action' => 'display', 'home']).'&nbsp;' ?>
+        <ul class="title-area large-6 medium-4 columns">
+            <li class="name left">
+                <?= $this->Html->link('Home', ['plugin' => false, 'prefix' => false, 'controller' => 'pages', 'action' => 'display', 'home']).'&nbsp;' ?>
             </li>
-            <li class="name" style="float: left;">
-                <?= $this->Html->link('Articles', ['controller' => 'articles', 'action' => 'index']).'&nbsp;' ?>
+            <li class="name left">
+                <?= $this->Html->link('Articles', ['plugin' => false, 'prefix' => false, 'controller' => 'articles', 'action' => 'index']).'&nbsp;' ?>
             </li>
-            <li class="name" style="float: left;">
-                <?= $this->Html->link('Categories', ['controller' => 'categories', 'action' => 'index']).'&nbsp;' ?>
+            <li class="name left">
+                <?= $this->Html->link('Categories', ['plugin' => false, 'prefix' => false, 'controller' => 'categories', 'action' => 'index']).'&nbsp;' ?>
+            </li>
+            <li class="name left">
+                <?= $this->Html->link('Comments', ['plugin' => 'Comments', 'prefix' => false, 'controller' => 'comments', 'action' => 'index']).'&nbsp;' ?>
+            </li>
+            <li class="name left">
+                <?= $this->Html->link('Comments Admin', ['plugin' => 'Comments', 'prefix' => 'admin', 'controller' => 'comments', 'action' => 'index']).'&nbsp;' ?>
+            </li>
+            <li class="name">
+                <?php if ($this->request->session()->check('Auth.User')) : ?>
+                    <?= $this->Html->link($this->request->session()->read('Auth.User.username'), '/logout'); ?>
+                <?php else : ?>
+                    <?= $this->Html->link('Visitor', '/login'); ?>
+                <?php endif; ?>
             </li>
         </ul>
         <div class="top-bar-section">

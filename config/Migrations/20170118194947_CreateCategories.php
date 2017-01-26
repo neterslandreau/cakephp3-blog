@@ -15,39 +15,38 @@ class CreateCategories extends AbstractMigration
         $table = $this->table('categories', ['id' => false, 'primary_key' => ['id']]);
         $table->addColumn('id', 'uuid', [
             'null' => false
-        ]);
-        $table->addColumn('parent_id', 'uuid', [
-            'null' => true,
-            'default' => null
-        ]);
-        $table->addColumn('lft', 'integer', [
+        ])
+        ->addColumn('parent_id', 'uuid', [
+            'null' => true
+        ])
+        ->addColumn('lft', 'integer', [
             'default' => null,
             'limit' => 10,
-            'null' => false
-        ]);
-        $table->addColumn('rght', 'integer', [
+            'null' => false,
+        ])
+        ->addColumn('rght', 'integer', [
             'default' => null,
             'limit' => 10,
-            'null' => false
-        ]);
-        $table->addColumn('name', 'string', [
-            'default' => null,
-            'limit' => 100,
-            'null' => false
-        ]);
-        $table->addColumn('description', 'string', [
+            'null' => false,
+        ])
+        ->addColumn('name', 'string', [
             'default' => null,
             'limit' => 255,
-            'null' => false
-        ]);
-        $table->addColumn('created', 'datetime', [
+            'null' => false,
+        ])
+        ->addColumn('description', 'string', [
             'default' => null,
-            'null' => false
-        ]);
-        $table->addColumn('modified', 'datetime', [
+            'limit' => 255,
+            'null' => false,
+        ])
+        ->addColumn('created', 'datetime', [
             'default' => null,
-            'null' => false
-        ]);
-        $table->create();
+            'null' => false,
+        ])
+        ->addColumn('modified', 'datetime', [
+            'default' => null,
+            'null' => false,
+        ])
+        ->create();
     }
 }

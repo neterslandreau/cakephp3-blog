@@ -24,7 +24,7 @@
         <tr>
             <td><?= h($article->id) ?></td>
             <td><?= h($article->title) ?></td>
-            <td><?= h($article->body) ?></td>
+            <td><?= $this->Text->truncate(h($article->body), 50) ?></td>
             <td>
                 <?php echo $this->Html->link(__($article->category->name), ['controller' => 'categories', 'action' => 'view', $article->category->id]); ?>
             </td>
