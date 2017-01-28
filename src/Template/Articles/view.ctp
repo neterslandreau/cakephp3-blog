@@ -36,7 +36,7 @@
         <h4><?= __('Body') ?></h4>
         <?= $this->Text->autoParagraph(h($article->body)); ?>
     </div>
-    <?= $this->element('commentCells'); ?>
+    <?= $this->element('Comments.commentCells'); ?>
 </div>
 blah<br />
 blah<br />

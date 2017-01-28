@@ -48,7 +48,7 @@
         </tr>
     </table>
 
-    <?= $this->element('commentCells'); ?>
+    <?= $this->element('Comments.commentCells'); ?>
 
     <div class="related">
         <h4><?= __('Related Articles') ?></h4>
