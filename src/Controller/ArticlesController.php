@@ -18,10 +18,6 @@ class ArticlesController extends AppController
     public function initialize()
     {
         parent::initialize();
-        $this->loadComponent('Comments.Comments', [
-            'userModelClass' => 'Users.Users',
-            'comment_view_type' => 'flat'
-        ]);
     }
     /**
      * @param $user
