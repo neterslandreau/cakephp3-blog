@@ -25,7 +25,7 @@ class SluggableBehavior extends Behavior
     {
         $config = $this->config();
         $value = $entity->get($config['field']);
-        $entity->set($config['slug'], Text::slug($value, $config['replacement']));
+        $entity->set($config['slug'], strtolower(Text::slug($value, $config['replacement'])));
     }
 
     public function beforeSave(Event $event, EntityInterface $entity)
