@@ -43,35 +43,6 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
-//        $this->loadComponent('Auth', [
-//            'authorize' => ['Controller'],
-//            'authenticate' => [
-//                'Form' => [
-//                    'fields' => [
-//                        'username' => 'email'
-//                    ],
-//                ],
-//            ],
-//            'loginRedirect' => [
-//                'prefix' => false,
-//                'plugin' => false,
-//                'controller' => 'Articles',
-//                'action' => 'index',
-//            ],
-//            'logoutRedirect' => [
-//                'prefix' => false,
-//                'plugin' => false,
-//                'controller' => 'Pages',
-//                'action' => 'index',
-//                'home'
-//            ],
-//            'authError' => 'You are not allowd!',
-//            'storage' => 'Session',
-//            'loginAction' => [
-//                'controller' => 'Users',
-//                'action' => 'login',
-//            ],
-//        ]);
         $this->loadComponent('CakeDC/Users.UsersAuth');
 
         parent::initialize();
