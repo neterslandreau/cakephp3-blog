@@ -40,7 +40,7 @@ class CreateCategories extends AbstractMigration
             'null' => false,
         ])
         ->addColumn('article_count', 'integer', [
-            'default' => null,
+            'default' => 0,
             'limit' => 11,
             'null' => false,
         ])
