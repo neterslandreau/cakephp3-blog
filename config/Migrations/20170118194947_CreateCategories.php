@@ -39,6 +39,11 @@ class CreateCategories extends AbstractMigration
             'limit' => 255,
             'null' => false,
         ])
+        ->addColumn('article_count', 'integer', [
+            'default' => null,
+            'limit' => 11,
+            'null' => false,
+        ])
         ->addColumn('created', 'datetime', [
             'default' => null,
             'null' => false,
