@@ -34,7 +34,7 @@ if (!$this->request->session()->check('Auth.User')) {
 //    echo $this->Html->link('Register', ['plugin' => 'Users', 'controller' => 'users', 'action' => 'register']).'<br />';
 } else {
 echo 'You are '. $this->request->session()->read('Auth.User.username').'!<br />';
-    echo $this->html->link('Logout', ['plugin' => false, 'prefix' => false, 'controller' => false, 'action' => 'logout']).'<br />';
+    echo $this->Html->link('Logout', ['plugin' => false, 'prefix' => false, 'controller' => false, 'action' => 'logout']).'<br />';
 }
-echo $this->html->link('Articles', ['plugin' => false, 'prefix' => false, 'controller' => 'articles', 'action' => 'index']).'<br />';
+echo $this->Html->link('Articles', ['plugin' => false, 'prefix' => false, 'controller' => 'articles', 'action' => 'index']).'<br />';
 echo $this->element('Comments.test');
