@@ -4,12 +4,6 @@
     "homepage": "http://cakephp.org",
     "type": "project",
     "license": "MIT",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://gihub.com/neterslandreau/comments"
-        }
-    ],
     "require": {
         "php": ">=5.5.9",
         "cakephp/cakephp": "3.3.*",
@@ -23,8 +17,7 @@
         "league/oauth2-instagram": "^0.2.2",
         "league/oauth2-google": "^1.0",
         "league/oauth2-linkedin": "^0.4.2",
-        "cakedc/search": "3.0.*-dev",
-        "plugins/Comments":"3.0-alpha"
+        "cakedc/search": "3.0.*-dev"
     },
     "require-dev": {
         "psy/psysh": "@stable",
