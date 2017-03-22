@@ -46,10 +46,10 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <li class="name left">
                 <?= $this->Html->link('Categories', ['plugin' => false, 'prefix' => false, 'controller' => 'categories', 'action' => 'index']).'&nbsp;' ?>
             </li>
-            <li class="name left">
+<!--             <li class="name left">
                 <?= $this->Html->link('Comments', ['plugin' => 'Comments', 'prefix' => false, 'controller' => 'comments', 'action' => 'index']).'&nbsp;' ?>
             </li>
-            <li class="name left">
+ -->            <li class="name left">
                 <?= $this->Html->link('Comments Admin', ['plugin' => 'Comments', 'prefix' => 'admin', 'controller' => 'comments', 'action' => 'index']).'&nbsp;' ?>
             </li>
             <li class="name">
@@ -61,11 +61,11 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             </li>
         </ul>
         <div class="top-bar-section">
-            <ul class="right">
+<!--             <ul class="right">
                 <li><a target="_blank" href="http://book.cakephp.org/3.0/">Documentation</a></li>
                 <li><a target="_blank" href="http://api.cakephp.org/3.0/">API</a></li>
             </ul>
-        </div>
+ -->        </div>
     </nav>
     <?= $this->Flash->render() ?>
     <div class="container clearfix">
